@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع البوستات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6200ee;
+            --secondary-color: #03dac6;
+            --background-color: #f5f5f5;
+            --card-color: #ffffff;
+            --text-color: #000000;
+            --neon-border: 0 0 10px rgba(1, 135, 134, 0.5);
+            --app-link: "https://example.com/app";
+        }
+
+        /* ثيم داكن */
+        .dark-theme {
+            --primary-color: #6200ee;
+            --secondary-color: #03dac6;
+            --background-color: #121212;
+            --card-color: #1e1e1e;
+            --text-color: #ffffff;
+            --neon-border: 0 0 10px rgba(3, 218, 198, 0.8);
+        }
+
+        /* ثيم أزرق */
+        .blue-theme {
+            --primary-color: #1976d2;
+            --secondary-color: #4fc3f7;
+            --background-color: #e3f2fd;
+            --card-color: #bbdefb;
+            --text-color: #0d47a1;
+            --neon-border: 0 0 10px rgba(25, 118, 210, 0.5);
+        }
+
+        /* ثيم أحمر */
+        .red-theme {
+            --primary-color: #d32f2f;
+            --secondary-color: #ff8a80;
+            --background-color: #ffebee;
+            --card-color: #ffcdd2;
+            --text-color: #b71c1c;
+            --neon-border: 0 0 10px rgba(211, 47, 47, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        /* البار العلوي */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .theme-btn, .filter-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover, .filter-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-dropdown, .filter-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            display: none;
+            z-index: 100;
+            width: 200px;
+        }
+
+        .filter-dropdown {
+            right: 10px;
+            left: auto;
+        }
+
+        .theme-dropdown.show, .filter-dropdown.show {
+            display: block;
+        }
+
+        .theme-option, .filter-option {
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+            color: #333;
+        }
+
+        .theme-option:hover, .filter-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .theme-option:last-child, .filter-option:last-child {
+            margin-bottom: 0;
+        }
+
+        /* الصفحة الرئيسية */
+        .main-page {
+            padding: 20px;
+            display: block;
+        }
+
+        .categories-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: var(--secondary-color);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--neon-border);
+            border: 1px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(3, 218, 198, 0.3);
+        }
+
+        .category-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .category-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* صفحة البوستات */
+        .posts-page {
+            padding: 20px;
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+        }
+
+        .posts-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: var(--secondary-color);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 15px;
+        }
+
+        .post-card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            border: 1px solid var(--secondary-color);
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(3, 218, 198, 0.3);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .post-content {
+            padding: 15px;
+        }
+
+        .post-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .post-date {
+            font-size: 12px;
+            color: #888;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        /* صفحة المفضلة */
+        .favorites-page {
+            padding: 20px;
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ديالوج الخيارات */
+        .options-dialog {
+            background-color: var(--card-color);
+            border-radius: 0 0 10px 10px;
+            padding: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            width: 100%;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid var(--secondary-color);
+        }
+
+        .options-dialog.show {
+            display: flex;
+        }
+
+        .option-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .option-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .option-label {
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        /* رسائل التأكيد */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+            animation: fadeInOut 2.5s;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* التكيف مع الشاشات الكبيرة */
+        @media (min-width: 768px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .posts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <!-- البار العلوي -->
+    <div class="navbar">
+        <div class="logo">موقع البوستات</div>
+        <div class="nav-actions">
+            <button class="filter-btn" title="الفلاتر">
+                <i class="fas fa-filter"></i>
+            </button>
+            <button class="theme-btn" title="تغيير الثيم">
+                <i class="fas fa-palette"></i>
+            </button>
+        </div>
+        <div class="theme-dropdown">
+            <div class="theme-option" data-theme="light-theme">الثيم الفاتح</div>
+            <div class="theme-option" data-theme="dark-theme">الثيم الداكن</div>
+            <div class="theme-option" data-theme="blue-theme">الثيم الأزرق</div>
+            <div class="theme-option" data-theme="red-theme">الثيم الأحمر</div>
+        </div>
+        <div class="filter-dropdown">
+            <div class="filter-option" data-filter="all">الكل</div>
+            <div class="filter-option" data-filter="latest">الأحدث</div>
+            <div class="filter-option" data-filter="favorites">المفضلة</div>
+        </div>
+    </div>
+
+    <!-- الصفحة الرئيسية (أقسام البوستات) -->
+    <div class="main-page">
+        <h1 class="categories-title">اختر قسم البوستات</h1>
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- سيتم ملؤها بالجافاسكريبت -->
+        </div>
+    </div>
+
+    <!-- صفحة عرض البوستات -->
+    <div class="posts-page" id="postsPage">
+        <button class="back-btn" id="backBtn">
+            <i class="fas fa-arrow-left"></i> العودة للأقسام
+        </button>
+        <h1 class="posts-title" id="postsTitle">عنوان القسم</h1>
+        <div class="posts-grid" id="postsGrid">
+            <!-- سيتم ملؤها بالجافاسكريبت -->
+        </div>
+    </div>
+
+    <!-- صفحة المفضلة -->
+    <div class="favorites-page" id="favoritesPage">
+        <button class="back-btn" id="backBtnFav">
+            <i class="fas fa-arrow-left"></i> العودة للأقسام
+        </button>
+        <h1 class="posts-title">المفضلة</h1>
+        <div class="posts-grid" id="favoritesGrid">
+            <!-- سيتم ملؤها بالجافاسكريبت -->
+        </div>
+    </div>
+
+    <!-- رسالة تأكيد -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // بيانات الأقسام
+        const categories = [
+            { id: 'romantic', name: 'بوستات رومانسية', icon: 'fas fa-heart' },
+            { id: 'cartoon', name: 'بوستات كرتون', icon: 'fas fa-film' },
+            { id: 'sad', name: 'بوستات حزينة', icon: 'fas fa-sad-tear' },
+            { id: 'religious', name: 'بوستات دينية', icon: 'fas fa-mosque' },
+            { id: 'quotes', name: 'اقتباسات', icon: 'fas fa-quote-right' }
+        ];
+
+        // رابط التطبيق للمشاركة
+        const APP_LINK = "https://example.com/app";
+
+        // العناصر الرئيسية في DOM
+        const categoriesGrid = document.getElementById('categoriesGrid');
+        const postsPage = document.getElementById('postsPage');
+        const postsGrid = document.getElementById('postsGrid');
+        const postsTitle = document.getElementById('postsTitle');
+        const backBtn = document.getElementById('backBtn');
+        const backBtnFav = document.getElementById('backBtnFav');
+        const filterBtn = document.querySelector('.filter-btn');
+        const favoritesPage = document.getElementById('favoritesPage');
+        const favoritesGrid = document.getElementById('favoritesGrid');
+        const themeBtn = document.querySelector('.theme-btn');
+        const themeDropdown = document.querySelector('.theme-dropdown');
+        const filterDropdown = document.querySelector('.filter-dropdown');
+        const toast = document.getElementById('toast');
+
+        // متغيرات حالة التطبيق
+        let currentCategory = '';
+        let currentPost = null;
+        let currentFilter = 'all';
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+        let allPosts = [];
+
+        // تهيئة الأقسام
+        function initCategories() {
+            categoriesGrid.innerHTML = '';
+            categories.forEach(category => {
+                const categoryCard = document.createElement('div');
+                categoryCard.className = 'category-card';
+                categoryCard.innerHTML = `
+                    <div class="category-icon">
+                        <i class="${category.icon}"></i>
+                    </div>
+                    <div class="category-name">${category.name}</div>
+                `;
+                categoryCard.addEventListener('click', () => showPosts(category.id, category.name));
+                categoriesGrid.appendChild(categoryCard);
+            });
+        }
+
+        // عرض البوستات لقسم معين
+        async function showPosts(categoryId, categoryName) {
+            currentCategory = categoryId;
+            postsTitle.textContent = categoryName;
+            postsGrid.innerHTML = '<div class="loading">جاري التحميل...</div>';
+            
+            document.querySelector('.main-page').style.display = 'none';
+            postsPage.style.display = 'block';
+            favoritesPage.style.display = 'none';
+            currentFilter = 'all';
+
+            try {
+                // جلب البيانات من مجلد Posts
+                const response = await fetch(`Posts/${categoryId}.json`);
+                
+                if (!response.ok) throw new Error('Failed to fetch');
+                
+                const posts = await response.json();
+                allPosts = posts;
+                displayPosts(posts);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+                postsGrid.innerHTML = '<div class="no-posts">لا توجد بوستات في هذا القسم بعد</div>';
+                showToast('⚠️ حدث خطأ في جلب البيانات');
+            }
+        }
+
+        // عرض البوستات في الشبكة
+        function displayPosts(posts) {
+            postsGrid.innerHTML = '';
+            
+            if (!posts || posts.length === 0) {
+                postsGrid.innerHTML = '<div class="no-posts">لا توجد بوستات في هذا القسم بعد</div>';
+                return;
+            }
+            
+            // تطبيق الفلتر إذا كان موجوداً
+            let filteredPosts = [...posts];
+            
+            if (currentFilter === 'latest') {
+                filteredPosts.sort((a, b) => {
+                    const dateA = a.date ? new Date(a.date.split('/').reverse().join('/')) : new Date(0);
+                    const dateB = b.date ? new Date(b.date.split('/').reverse().join('/')) : new Date(0);
+                    return dateB - dateA;
+                });
+            } else if (currentFilter === 'favorites') {
+                const categoryFavorites = favorites[currentCategory] || [];
+                filteredPosts = filteredPosts.filter(post => 
+                    categoryFavorites.some(fav => 
+                        fav.text === post.text && fav.image === (post.image || '')
+                    )
+                );
+            }
+            
+            filteredPosts.forEach((post, index) => {
+                const postCard = document.createElement('div');
+                postCard.className = 'post-card';
+                
+                let imageHTML = '';
+                if (post.image && post.image.trim() !== '') {
+                    imageHTML = `<img src="${post.image}" alt="صورة البوست" class="post-image">`;
+                }
+                
+                postCard.innerHTML = `
+                    ${imageHTML}
+                    <div class="post-content">
+                        <p class="post-text">${post.text}</p>
+                        ${post.date ? `<div class="post-date">${post.date}</div>` : ''}
+                    </div>
+                    <div class="options-dialog" id="optionsDialog-${index}">
+                        <button class="option-btn" onclick="copyText(${index})">
+                            <i class="fas fa-copy"></i>
+                            <span class="option-label">نسخ</span>
+                        </button>
+                        <button class="option-btn" onclick="sharePost(${index})">
+                            <i class="fas fa-share-alt"></i>
+                            <span class="option-label">مشاركة</span>
+                        </button>
+                        <button class="option-btn" onclick="toggleFavorite(${index})" id="favoriteBtn-${index}">
+                            <i class="fas fa-heart"></i>
+                            <span class="option-label">مفضلة</span>
+                        </button>
+                    </div>
+                `;
+                
+                // تحديث حالة زر المفضلة
+                updateFavoriteButton(index, post);
+                
+                // إضافة حدث النقر على البوست
+                postCard.addEventListener('click', (e) => {
+                    // منع فتح الخيارات إذا تم النقر على أحدها مباشرة
+                    if (e.target.closest('.option-btn')) return;
+                    
+                    const optionsDialog = postCard.querySelector('.options-dialog');
+                    const isShowing = optionsDialog.classList.contains('show');
+                    
+                    // إخفاء جميع الديالوجات الأخرى
+                    document.querySelectorAll('.options-dialog.show').forEach(dialog => {
+                        if (dialog !== optionsDialog) {
+                            dialog.classList.remove('show');
+                        }
+                    });
+                    
+                    // تبديل حالة الديالوج الحالي
+                    optionsDialog.classList.toggle('show', !isShowing);
+                });
+                
+                postsGrid.appendChild(postCard);
+            });
+        }
+
+        // تحديث حالة زر المفضلة
+        function updateFavoriteButton(index, post) {
+            const favoriteBtn = document.getElementById(`favoriteBtn-${index}`);
+            if (!favoriteBtn) return;
+            
+            const isFavorite = checkIfFavorite(post);
+            favoriteBtn.innerHTML = isFavorite ? 
+                '<i class="fas fa-heart" style="color: red"></i><span class="option-label">إزالة</span>' : 
+                '<i class="fas fa-heart"></i><span class="option-label">مفضلة</span>';
+        }
+
+        // عرض المفضلة
+        function showFavorites() {
+            favoritesPage.style.display = 'block';
+            document.querySelector('.main-page').style.display = 'none';
+            postsPage.style.display = 'none';
+            
+            favoritesGrid.innerHTML = '';
+            
+            let hasFavorites = false;
+            
+            for (const category in favorites) {
+                if (favorites[category].length > 0) {
+                    hasFavorites = true;
+                    
+                    const categoryTitle = document.createElement('h2');
+                    categoryTitle.textContent = categories.find(c => c.id === category)?.name || category;
+                    categoryTitle.style.margin = '20px 0 10px';
+                    categoryTitle.style.color = 'var(--secondary-color)';
+                    favoritesGrid.appendChild(categoryTitle);
+                    
+                    favorites[category].forEach((post, index) => {
+                        const postCard = document.createElement('div');
+                        postCard.className = 'post-card';
+                        
+                        let imageHTML = '';
+                        if (post.image && post.image.trim() !== '') {
+                            imageHTML = `<img src="${post.image}" alt="صورة البوست" class="post-image">`;
+                        }
+                        
+                        postCard.innerHTML = `
+                            ${imageHTML}
+                            <div class="post-content">
+                                <p class="post-text">${post.text}</p>
+                            </div>
+                            <div class="options-dialog" id="optionsDialog-fav-${category}-${index}">
+                                <button class="option-btn" onclick="copyFavText('${category}', ${index})">
+                                    <i class="fas fa-copy"></i>
+                                    <span class="option-label">نسخ</span>
+                                </button>
+                                <button class="option-btn" onclick="shareFavPost('${category}', ${index})">
+                                    <i class="fas fa-share-alt"></i>
+                                    <span class="option-label">مشاركة</span>
+                                </button>
+                                <button class="option-btn" onclick="toggleFavFavorite('${category}', ${index})">
+                                    <i class="fas fa-heart" style="color: red"></i>
+                                    <span class="option-label">إزالة</span>
+                                </button>
+                            </div>
+                        `;
+                        
+                        // إضافة حدث النقر على البوست
+                        postCard.addEventListener('click', (e) => {
+                            if (e.target.closest('.option-btn')) return;
+                            
+                            const optionsDialog = postCard.querySelector('.options-dialog');
+                            const isShowing = optionsDialog.classList.contains('show');
+                            
+                            document.querySelectorAll('.options-dialog.show').forEach(dialog => {
+                                if (dialog !== optionsDialog) {
+                                    dialog.classList.remove('show');
+                                }
+                            });
+                            
+                            optionsDialog.classList.toggle('show', !isShowing);
+                        });
+                        
+                        favoritesGrid.appendChild(postCard);
+                    });
+                }
+            }
+            
+            if (!hasFavorites) {
+                favoritesGrid.innerHTML = '<div class="no-posts">لا توجد عناصر في المفضلة بعد</div>';
+            }
+        }
+
+        // التحقق إذا كان البوست في المفضلة
+        function checkIfFavorite(post) {
+            if (!post || !currentCategory) return false;
+            
+            const categoryFavorites = favorites[currentCategory] || [];
+            return categoryFavorites.some(fav => 
+                fav.text === post.text && fav.image === (post.image || '')
+            );
+        }
+
+        // نسخ النص
+        function copyText(index) {
+            const post = allPosts[index];
+            const textToCopy = post.shareText || post.text;
+            
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => showToast('تم نسخ النص بنجاح'))
+                .catch(() => showToast('فشل نسخ النص'));
+        }
+
+        // نسخ النص من المفضلة
+        function copyFavText(category, index) {
+            const post = favorites[category][index];
+            const textToCopy = post.shareText || post.text;
+            
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => showToast('تم نسخ النص بنجاح'))
+                .catch(() => showToast('فشل نسخ النص'));
+        }
+
+        // مشاركة البوست
+        function sharePost(index) {
+            const post = allPosts[index];
+            let shareText = post.shareText || post.text;
+            
+            if (post.image && post.image.trim() !== '') {
+                shareText += `\n\n${post.image}`;
+            }
+            
+            shareText += `\n\n${APP_LINK}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'مشاركة بوست',
+                    text: post.shareText || post.text,
+                    url: APP_LINK
+                }).catch(() => {
+                    copyToClipboard(shareText);
+                });
+            } else {
+                copyToClipboard(shareText);
+            }
+        }
+
+        // مشاركة البوست من المفضلة
+        function shareFavPost(category, index) {
+            const post = favorites[category][index];
+            let shareText = post.shareText || post.text;
+            
+            if (post.image && post.image.trim() !== '') {
+                shareText += `\n\n${post.image}`;
+            }
+            
+            shareText += `\n\n${APP_LINK}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'مشاركة بوست',
+                    text: post.shareText || post.text,
+                    url: APP_LINK
+                }).catch(() => {
+                    copyToClipboard(shareText);
+                });
+            } else {
+                copyToClipboard(shareText);
+            }
+        }
+
+        // نسخ إلى الحافظة كبديل إذا لم يكن المشاركة متاحة
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => showToast('تم نسخ البوست للمشاركة'))
+                .catch(() => showToast('فشل مشاركة البوست'));
+        }
+
+        // إضافة/إزالة من المفضلة
+        function toggleFavorite(index) {
+            const post = allPosts[index];
+            if (!post || !currentCategory) return;
+            
+            if (!favorites[currentCategory]) {
+                favorites[currentCategory] = [];
+            }
+            
+            const isFavorite = checkIfFavorite(post);
+            
+            if (isFavorite) {
+                // إزالة من المفضلة
+                favorites[currentCategory] = favorites[currentCategory].filter(fav => 
+                    !(fav.text === post.text && fav.image === (post.image || ''))
+                );
+                showToast('تمت الإزالة من المفضلة');
+            } else {
+                // إضافة إلى المفضلة
+                favorites[currentCategory].push({
+                    text: post.text,
+                    image: post.image || '',
+                    shareText: post.shareText || '',
+                    date: post.date || ''
+                });
+                showToast('تمت الإضافة إلى المفضلة');
+            }
+            
+            // حفظ في localStorage
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            
+            // تحديث زر المفضلة
+            updateFavoriteButton(index, post);
+            
+            // تحديث عرض المفضلة إذا كانت مفتوحة
+            if (favoritesPage.style.display === 'block') {
+                showFavorites();
+            }
+            
+            // تحديث عرض البوستات إذا كان الفلتر على المفضلة
+            if (currentFilter === 'favorites') {
+                displayPosts(allPosts);
+            }
+        }
+
+        // إضافة/إزالة من المفضلة (من صفحة المفضلة)
+        function toggleFavFavorite(category, index) {
+            if (!favorites[category]) return;
+            
+            // إزالة من المفضلة
+            favorites[category].splice(index, 1);
+            
+            // حفظ في localStorage
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            
+            showToast('تمت الإزالة من المفضلة');
+            
+            // تحديث عرض المفضلة
+            showFavorites();
+            
+            // تحديث عرض البوستات إذا كان الفلتر على المفضلة
+            if (currentFilter === 'favorites') {
+                displayPosts(allPosts);
+            }
+        }
+
+        // عرض رسالة تأكيد
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // تغيير الثيم
+        function changeTheme(theme) {
+            document.body.className = theme;
+            localStorage.setItem('theme', theme);
+        }
+
+        // تغيير الفلتر
+        function changeFilter(filter) {
+            currentFilter = filter;
+            displayPosts(allPosts);
+            filterDropdown.classList.remove('show');
+        }
+
+        // العودة للصفحة الرئيسية
+        function backToMain() {
+            document.querySelector('.main-page').style.display = 'block';
+            postsPage.style.display = 'none';
+            favoritesPage.style.display = 'none';
+            currentCategory = '';
+            currentPost = null;
+            currentFilter = 'all';
+        }
+
+        // أحداث DOM
+        backBtn.addEventListener('click', backToMain);
+        backBtnFav.addEventListener('click', backToMain);
+        filterBtn.addEventListener('click', () => {
+            filterDropdown.classList.toggle('show');
+            themeDropdown.classList.remove('show');
+        });
+        themeBtn.addEventListener('click', () => {
+            themeDropdown.classList.toggle('show');
+            filterDropdown.classList.remove('show');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!themeBtn.contains(e.target) && !themeDropdown.contains(e.target)) {
+                themeDropdown.classList.remove('show');
+            }
+            
+            if (!filterBtn.contains(e.target) && !filterDropdown.contains(e.target)) {
+                filterDropdown.classList.remove('show');
+            }
+        });
+        
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', () => {
+                changeTheme(option.dataset.theme);
+                themeDropdown.classList.remove('show');
+            });
+        });
+        
+        document.querySelectorAll('.filter-option').forEach(option => {
+            option.addEventListener('click', () => {
+                changeFilter(option.dataset.filter);
+            });
+        });
+
+        // تهيئة التطبيق
+        function initApp() {
+            initCategories();
+            
+            // تحميل الثيم المحفوظ
+            const savedTheme = localStorage.getItem('theme') || 'light-theme';
+            changeTheme(savedTheme);
+        }
+
+        // بدء التطبيق
+        initApp();
+    </script>
+</body>
+</html>
