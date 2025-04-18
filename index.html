@@ -488,6 +488,11 @@
                         fav.text === post.text && fav.image === (post.image || '')
                     )
                 );
+                
+                if (filteredPosts.length === 0) {
+                    postsGrid.innerHTML = '<div class="no-posts">لا توجد بوستات في المفضلة لهذا القسم</div>';
+                    return;
+                }
             }
             
             filteredPosts.forEach((post, index) => {
@@ -546,13 +551,15 @@
 
         // تحديث حالة زر المفضلة
         function updateFavoriteButton(index, post) {
-            const favoriteBtn = document.getElementById(`favoriteBtn-${index}`);
-            if (!favoriteBtn) return;
-            
-            const isFavorite = checkIfFavorite(post);
-            favoriteBtn.innerHTML = isFavorite ? 
-                '<i class="fas fa-heart" style="color: red"></i><span class="option-label">إزالة</span>' : 
-                '<i class="fas fa-heart"></i><span class="option-label">مفضلة</span>';
+            setTimeout(() => {
+                const favoriteBtn = document.getElementById(`favoriteBtn-${index}`);
+                if (!favoriteBtn) return;
+                
+                const isFavorite = checkIfFavorite(post);
+                favoriteBtn.innerHTML = isFavorite ? 
+                    '<i class="fas fa-heart" style="color: red"></i><span class="option-label">إزالة</span>' : 
+                    '<i class="fas fa-heart"></i><span class="option-label">مفضلة</span>';
+            }, 50);
         }
 
         // عرض المفضلة
@@ -567,7 +574,7 @@
             let hasFavorites = false;
             
             for (const category in favorites) {
-                if (favorites[category].length > 0) {
+                if (favorites[category] && favorites[category].length > 0) {
                     hasFavorites = true;
                     
                     const categoryTitle = document.createElement('h2');
@@ -737,6 +744,8 @@
             }
             
             localStorage.setItem('favorites', JSON.stringify(favorites));
+            
+            // تحديث زر المفضلة بعد تأكيد الإضافة/الإزالة
             updateFavoriteButton(index, post);
             
             if (favoritesPage.style.display === 'block') {
@@ -757,7 +766,7 @@
             showToast('تمت الإزالة من المفضلة');
             showFavorites();
             
-            if (currentFilter === 'favorites') {
+            if (currentFilter === 'favorites' && currentCategory === category) {
                 displayPosts(allPosts);
             }
         }
@@ -791,11 +800,15 @@
         // تغيير الفلتر
         function changeFilter(filter) {
             currentFilter = filter;
-            displayPosts(allPosts);
             filterDropdown.classList.remove('show');
             
             if (filter === 'favorites') {
-                showFavorites();
+                // إذا كان الفلتر هو المفضلة، نعرض البوستات المفضلة في نفس الصفحة
+                displayPosts(allPosts);
+            } else if (filter === 'latest') {
+                displayPosts(allPosts);
+            } else {
+                displayPosts(allPosts);
             }
         }
 
@@ -852,4 +865,4 @@
         initApp();
     </script>
 </body>
-            </html>
+    </html>
