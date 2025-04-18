@@ -12,38 +12,16 @@
             --background-color: #f5f5f5;
             --card-color: #ffffff;
             --text-color: #000000;
-            --neon-border: 0 0 10px rgba(1, 135, 134, 0.5);
-            --app-link: "https://example.com/app";
+            --navbar-height: 50px;
         }
 
-        /* ثيم داكن */
+        /* ثيم ليلي */
         .dark-theme {
             --primary-color: #6200ee;
             --secondary-color: #03dac6;
             --background-color: #121212;
             --card-color: #1e1e1e;
             --text-color: #ffffff;
-            --neon-border: 0 0 10px rgba(3, 218, 198, 0.8);
-        }
-
-        /* ثيم أزرق */
-        .blue-theme {
-            --primary-color: #1976d2;
-            --secondary-color: #4fc3f7;
-            --background-color: #e3f2fd;
-            --card-color: #bbdefb;
-            --text-color: #0d47a1;
-            --neon-border: 0 0 10px rgba(25, 118, 210, 0.5);
-        }
-
-        /* ثيم أحمر */
-        .red-theme {
-            --primary-color: #d32f2f;
-            --secondary-color: #ff8a80;
-            --background-color: #ffebee;
-            --card-color: #ffcdd2;
-            --text-color: #b71c1c;
-            --neon-border: 0 0 10px rgba(211, 47, 47, 0.5);
         }
 
         * {
@@ -60,21 +38,25 @@
             transition: all 0.3s ease;
         }
 
-        /* البار العلوي */
+        /* البار العلوي - معدل حسب الطلب */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            background-color: var(--primary-color);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 0 15px;
+            height: var(--navbar-height);
+            background-color: var(--card-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
-        .logo {
-            font-size: 24px;
+        .nav-title {
+            font-size: 18px;
             font-weight: bold;
-            color: white;
+            color: var(--text-color);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .nav-actions {
@@ -85,138 +67,112 @@
         .theme-btn, .filter-btn {
             background: none;
             border: none;
-            color: white;
-            font-size: 20px;
+            color: var(--text-color);
+            font-size: 18px;
             cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 5px;
             transition: all 0.3s;
         }
 
-        .theme-btn:hover, .filter-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .theme-dropdown, .filter-dropdown {
+        .filter-dropdown {
             position: absolute;
             top: 100%;
-            left: 10px;
-            background-color: white;
+            right: 10px;
+            background-color: var(--card-color);
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             padding: 10px;
             display: none;
             z-index: 100;
-            width: 200px;
+            width: 150px;
         }
 
-        .filter-dropdown {
-            right: 10px;
-            left: auto;
-        }
-
-        .theme-dropdown.show, .filter-dropdown.show {
+        .filter-dropdown.show {
             display: block;
         }
 
-        .theme-option, .filter-option {
+        .filter-option {
             padding: 8px 10px;
             cursor: pointer;
             border-radius: 3px;
             margin-bottom: 5px;
             transition: all 0.2s;
-            color: #333;
+            color: var(--text-color);
+            text-align: right;
         }
 
-        .theme-option:hover, .filter-option:hover {
-            background-color: #f0f0f0;
+        .filter-option:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
-        .theme-option:last-child, .filter-option:last-child {
+        .filter-option:last-child {
             margin-bottom: 0;
         }
 
         /* الصفحة الرئيسية */
         .main-page {
-            padding: 20px;
+            padding: 15px;
             display: block;
-        }
-
-        .categories-title {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-            color: var(--secondary-color);
         }
 
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 12px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .category-card {
             background-color: var(--card-color);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: var(--neon-border);
-            border: 1px solid var(--secondary-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 120px;
+            min-height: 100px;
         }
 
         .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(3, 218, 198, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(3, 218, 198, 0.2);
         }
 
         .category-icon {
-            font-size: 30px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 8px;
             color: var(--secondary-color);
         }
 
         .category-name {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
-            margin-bottom: 5px;
         }
 
         /* صفحة البوستات */
         .posts-page {
-            padding: 20px;
+            padding: 15px;
             display: none;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .back-btn {
-            background-color: var(--primary-color);
-            color: white;
+            background: none;
             border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
+            color: var(--secondary-color);
+            padding: 5px 0;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 5px;
             font-size: 16px;
-        }
-
-        .posts-title {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-            color: var(--secondary-color);
         }
 
         .posts-grid {
@@ -225,27 +181,28 @@
             gap: 15px;
         }
 
+        /* تحسين شكل البوستات لتبدو أكثر احترافية */
         .post-card {
             background-color: var(--card-color);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
             position: relative;
-            border: 1px solid var(--secondary-color);
-            cursor: pointer;
+            border: 1px solid rgba(3, 218, 198, 0.2);
         }
 
         .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(3, 218, 198, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(3, 218, 198, 0.3);
         }
 
         .post-image {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
             display: block;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .post-content {
@@ -253,10 +210,22 @@
         }
 
         .post-text {
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 16px;
+            line-height: 1.6;
             margin-bottom: 10px;
-            line-height: 1.5;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .post-text:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
         }
 
         .post-date {
@@ -264,11 +233,14 @@
             color: #888;
             text-align: left;
             margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         /* صفحة المفضلة */
         .favorites-page {
-            padding: 20px;
+            padding: 15px;
             display: none;
             max-width: 1200px;
             margin: 0 auto;
@@ -277,14 +249,14 @@
         /* ديالوج الخيارات */
         .options-dialog {
             background-color: var(--card-color);
-            border-radius: 0 0 10px 10px;
-            padding: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 0 0 8px 8px;
+            padding: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             display: none;
             width: 100%;
             justify-content: space-around;
             align-items: center;
-            border-top: 1px solid var(--secondary-color);
+            border-top: 1px solid rgba(3, 218, 198, 0.3);
         }
 
         .options-dialog.show {
@@ -295,23 +267,23 @@
             background: none;
             border: none;
             color: var(--text-color);
-            font-size: 20px;
+            font-size: 16px;
             cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
+            padding: 5px 8px;
+            border-radius: 5px;
             transition: all 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 3px;
         }
 
         .option-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
         .option-label {
-            font-size: 12px;
+            font-size: 10px;
             font-weight: normal;
         }
 
@@ -345,35 +317,38 @@
         /* التكيف مع الشاشات الكبيرة */
         @media (min-width: 768px) {
             .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
             }
             
             .posts-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                gap: 15px;
+            }
+            
+            .nav-title {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body class="light-theme">
-    <!-- البار العلوي -->
+    <!-- البار العلوي المعدل حسب الطلب -->
     <div class="navbar">
-        <div class="logo">موقع البوستات</div>
         <div class="nav-actions">
             <button class="filter-btn" title="الفلاتر">
                 <i class="fas fa-filter"></i>
             </button>
-            <button class="theme-btn" title="تغيير الثيم">
-                <i class="fas fa-palette"></i>
+        </div>
+        
+        <div class="nav-title" id="navTitle">بوستات</div>
+        
+        <div class="nav-actions">
+            <button class="theme-btn" title="تبديل الثيم" id="themeToggleBtn">
+                <i class="fas fa-moon"></i>
             </button>
         </div>
-        <div class="theme-dropdown">
-            <div class="theme-option" data-theme="light-theme">الثيم الفاتح</div>
-            <div class="theme-option" data-theme="dark-theme">الثيم الداكن</div>
-            <div class="theme-option" data-theme="blue-theme">الثيم الأزرق</div>
-            <div class="theme-option" data-theme="red-theme">الثيم الأحمر</div>
-        </div>
+        
         <div class="filter-dropdown">
             <div class="filter-option" data-filter="all">الكل</div>
             <div class="filter-option" data-filter="latest">الأحدث</div>
@@ -381,9 +356,8 @@
         </div>
     </div>
 
-    <!-- الصفحة الرئيسية (أقسام البوستات) -->
+    <!-- الصفحة الرئيسية -->
     <div class="main-page">
-        <h1 class="categories-title">اختر قسم البوستات</h1>
         <div class="categories-grid" id="categoriesGrid">
             <!-- سيتم ملؤها بالجافاسكريبت -->
         </div>
@@ -392,9 +366,8 @@
     <!-- صفحة عرض البوستات -->
     <div class="posts-page" id="postsPage">
         <button class="back-btn" id="backBtn">
-            <i class="fas fa-arrow-left"></i> العودة للأقسام
+            <i class="fas fa-arrow-left"></i> العودة
         </button>
-        <h1 class="posts-title" id="postsTitle">عنوان القسم</h1>
         <div class="posts-grid" id="postsGrid">
             <!-- سيتم ملؤها بالجافاسكريبت -->
         </div>
@@ -403,9 +376,8 @@
     <!-- صفحة المفضلة -->
     <div class="favorites-page" id="favoritesPage">
         <button class="back-btn" id="backBtnFav">
-            <i class="fas fa-arrow-left"></i> العودة للأقسام
+            <i class="fas fa-arrow-left"></i> العودة
         </button>
-        <h1 class="posts-title">المفضلة</h1>
         <div class="posts-grid" id="favoritesGrid">
             <!-- سيتم ملؤها بالجافاسكريبت -->
         </div>
@@ -417,30 +389,27 @@
     <script>
         // بيانات الأقسام
         const categories = [
-            { id: 'romantic', name: 'بوستات رومانسية', icon: 'fas fa-heart' },
-            { id: 'cartoon', name: 'بوستات كرتون', icon: 'fas fa-film' },
-            { id: 'sad', name: 'بوستات حزينة', icon: 'fas fa-sad-tear' },
-            { id: 'religious', name: 'بوستات دينية', icon: 'fas fa-mosque' },
-            { id: 'quotes', name: 'اقتباسات', icon: 'fas fa-quote-right' }
+            { id: 'romantic', name: 'رومانسية', icon: 'fas fa-heart' },
+            { id: 'cartoon', name: 'كرتون', icon: 'fas fa-film' },
+            { id: 'sad', name: 'حزينة', icon: 'fas fa-sad-tear' },
+            { id: 'religious', name: 'دينية', icon: 'fas fa-mosque' },
+            { id: 'quotes', name: 'اقتباسات', icon: 'fas fa-quote-right' },
+            { id: 'funny', name: 'مضحكة', icon: 'fas fa-laugh-squint' }
         ];
-
-        // رابط التطبيق للمشاركة
-        const APP_LINK = "https://example.com/app";
 
         // العناصر الرئيسية في DOM
         const categoriesGrid = document.getElementById('categoriesGrid');
         const postsPage = document.getElementById('postsPage');
         const postsGrid = document.getElementById('postsGrid');
-        const postsTitle = document.getElementById('postsTitle');
         const backBtn = document.getElementById('backBtn');
         const backBtnFav = document.getElementById('backBtnFav');
         const filterBtn = document.querySelector('.filter-btn');
         const favoritesPage = document.getElementById('favoritesPage');
         const favoritesGrid = document.getElementById('favoritesGrid');
-        const themeBtn = document.querySelector('.theme-btn');
-        const themeDropdown = document.querySelector('.theme-dropdown');
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
         const filterDropdown = document.querySelector('.filter-dropdown');
         const toast = document.getElementById('toast');
+        const navTitle = document.getElementById('navTitle');
 
         // متغيرات حالة التطبيق
         let currentCategory = '';
@@ -448,6 +417,7 @@
         let currentFilter = 'all';
         let favorites = JSON.parse(localStorage.getItem('favorites')) || {};
         let allPosts = [];
+        let isDarkTheme = localStorage.getItem('isDarkTheme') === 'true';
 
         // تهيئة الأقسام
         function initCategories() {
@@ -469,7 +439,7 @@
         // عرض البوستات لقسم معين
         async function showPosts(categoryId, categoryName) {
             currentCategory = categoryId;
-            postsTitle.textContent = categoryName;
+            navTitle.textContent = categoryName;
             postsGrid.innerHTML = '<div class="loading">جاري التحميل...</div>';
             
             document.querySelector('.main-page').style.display = 'none';
@@ -533,7 +503,7 @@
                     ${imageHTML}
                     <div class="post-content">
                         <p class="post-text">${post.text}</p>
-                        ${post.date ? `<div class="post-date">${post.date}</div>` : ''}
+                        ${post.date ? `<div class="post-date"><i class="far fa-clock"></i> ${post.date}</div>` : ''}
                     </div>
                     <div class="options-dialog" id="optionsDialog-${index}">
                         <button class="option-btn" onclick="copyText(${index})">
@@ -556,20 +526,17 @@
                 
                 // إضافة حدث النقر على البوست
                 postCard.addEventListener('click', (e) => {
-                    // منع فتح الخيارات إذا تم النقر على أحدها مباشرة
                     if (e.target.closest('.option-btn')) return;
                     
                     const optionsDialog = postCard.querySelector('.options-dialog');
                     const isShowing = optionsDialog.classList.contains('show');
                     
-                    // إخفاء جميع الديالوجات الأخرى
                     document.querySelectorAll('.options-dialog.show').forEach(dialog => {
                         if (dialog !== optionsDialog) {
                             dialog.classList.remove('show');
                         }
                     });
                     
-                    // تبديل حالة الديالوج الحالي
                     optionsDialog.classList.toggle('show', !isShowing);
                 });
                 
@@ -590,6 +557,7 @@
 
         // عرض المفضلة
         function showFavorites() {
+            navTitle.textContent = 'المفضلة';
             favoritesPage.style.display = 'block';
             document.querySelector('.main-page').style.display = 'none';
             postsPage.style.display = 'none';
@@ -621,6 +589,7 @@
                             ${imageHTML}
                             <div class="post-content">
                                 <p class="post-text">${post.text}</p>
+                                ${post.date ? `<div class="post-date"><i class="far fa-clock"></i> ${post.date}</div>` : ''}
                             </div>
                             <div class="options-dialog" id="optionsDialog-fav-${category}-${index}">
                                 <button class="option-btn" onclick="copyFavText('${category}', ${index})">
@@ -638,7 +607,6 @@
                             </div>
                         `;
                         
-                        // إضافة حدث النقر على البوست
                         postCard.addEventListener('click', (e) => {
                             if (e.target.closest('.option-btn')) return;
                             
@@ -677,7 +645,7 @@
         // نسخ النص
         function copyText(index) {
             const post = allPosts[index];
-            const textToCopy = post.shareText || post.text;
+            const textToCopy = post.text;
             
             navigator.clipboard.writeText(textToCopy)
                 .then(() => showToast('تم نسخ النص بنجاح'))
@@ -687,7 +655,7 @@
         // نسخ النص من المفضلة
         function copyFavText(category, index) {
             const post = favorites[category][index];
-            const textToCopy = post.shareText || post.text;
+            const textToCopy = post.text;
             
             navigator.clipboard.writeText(textToCopy)
                 .then(() => showToast('تم نسخ النص بنجاح'))
@@ -697,19 +665,16 @@
         // مشاركة البوست
         function sharePost(index) {
             const post = allPosts[index];
-            let shareText = post.shareText || post.text;
+            let shareText = post.text;
             
             if (post.image && post.image.trim() !== '') {
                 shareText += `\n\n${post.image}`;
             }
             
-            shareText += `\n\n${APP_LINK}`;
-            
             if (navigator.share) {
                 navigator.share({
                     title: 'مشاركة بوست',
-                    text: post.shareText || post.text,
-                    url: APP_LINK
+                    text: post.text
                 }).catch(() => {
                     copyToClipboard(shareText);
                 });
@@ -721,19 +686,16 @@
         // مشاركة البوست من المفضلة
         function shareFavPost(category, index) {
             const post = favorites[category][index];
-            let shareText = post.shareText || post.text;
+            let shareText = post.text;
             
             if (post.image && post.image.trim() !== '') {
                 shareText += `\n\n${post.image}`;
             }
             
-            shareText += `\n\n${APP_LINK}`;
-            
             if (navigator.share) {
                 navigator.share({
                     title: 'مشاركة بوست',
-                    text: post.shareText || post.text,
-                    url: APP_LINK
+                    text: post.text
                 }).catch(() => {
                     copyToClipboard(shareText);
                 });
@@ -761,34 +723,26 @@
             const isFavorite = checkIfFavorite(post);
             
             if (isFavorite) {
-                // إزالة من المفضلة
                 favorites[currentCategory] = favorites[currentCategory].filter(fav => 
                     !(fav.text === post.text && fav.image === (post.image || ''))
                 );
                 showToast('تمت الإزالة من المفضلة');
             } else {
-                // إضافة إلى المفضلة
                 favorites[currentCategory].push({
                     text: post.text,
                     image: post.image || '',
-                    shareText: post.shareText || '',
                     date: post.date || ''
                 });
                 showToast('تمت الإضافة إلى المفضلة');
             }
             
-            // حفظ في localStorage
             localStorage.setItem('favorites', JSON.stringify(favorites));
-            
-            // تحديث زر المفضلة
             updateFavoriteButton(index, post);
             
-            // تحديث عرض المفضلة إذا كانت مفتوحة
             if (favoritesPage.style.display === 'block') {
                 showFavorites();
             }
             
-            // تحديث عرض البوستات إذا كان الفلتر على المفضلة
             if (currentFilter === 'favorites') {
                 displayPosts(allPosts);
             }
@@ -798,18 +752,11 @@
         function toggleFavFavorite(category, index) {
             if (!favorites[category]) return;
             
-            // إزالة من المفضلة
             favorites[category].splice(index, 1);
-            
-            // حفظ في localStorage
             localStorage.setItem('favorites', JSON.stringify(favorites));
-            
             showToast('تمت الإزالة من المفضلة');
-            
-            // تحديث عرض المفضلة
             showFavorites();
             
-            // تحديث عرض البوستات إذا كان الفلتر على المفضلة
             if (currentFilter === 'favorites') {
                 displayPosts(allPosts);
             }
@@ -825,10 +772,20 @@
             }, 2500);
         }
 
-        // تغيير الثيم
-        function changeTheme(theme) {
-            document.body.className = theme;
-            localStorage.setItem('theme', theme);
+        // تبديل الثيم بين النهاري والليلي
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            localStorage.setItem('isDarkTheme', isDarkTheme);
+            
+            if (isDarkTheme) {
+                document.body.className = 'dark-theme';
+                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                themeToggleBtn.title = 'الوضع النهاري';
+            } else {
+                document.body.className = 'light-theme';
+                themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                themeToggleBtn.title = 'الوضع الليلي';
+            }
         }
 
         // تغيير الفلتر
@@ -836,10 +793,15 @@
             currentFilter = filter;
             displayPosts(allPosts);
             filterDropdown.classList.remove('show');
+            
+            if (filter === 'favorites') {
+                showFavorites();
+            }
         }
 
         // العودة للصفحة الرئيسية
         function backToMain() {
+            navTitle.textContent = 'بوستات';
             document.querySelector('.main-page').style.display = 'block';
             postsPage.style.display = 'none';
             favoritesPage.style.display = 'none';
@@ -851,30 +813,17 @@
         // أحداث DOM
         backBtn.addEventListener('click', backToMain);
         backBtnFav.addEventListener('click', backToMain);
+        
         filterBtn.addEventListener('click', () => {
             filterDropdown.classList.toggle('show');
-            themeDropdown.classList.remove('show');
-        });
-        themeBtn.addEventListener('click', () => {
-            themeDropdown.classList.toggle('show');
-            filterDropdown.classList.remove('show');
         });
         
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        
         document.addEventListener('click', (e) => {
-            if (!themeBtn.contains(e.target) && !themeDropdown.contains(e.target)) {
-                themeDropdown.classList.remove('show');
-            }
-            
             if (!filterBtn.contains(e.target) && !filterDropdown.contains(e.target)) {
                 filterDropdown.classList.remove('show');
             }
-        });
-        
-        document.querySelectorAll('.theme-option').forEach(option => {
-            option.addEventListener('click', () => {
-                changeTheme(option.dataset.theme);
-                themeDropdown.classList.remove('show');
-            });
         });
         
         document.querySelectorAll('.filter-option').forEach(option => {
@@ -888,12 +837,19 @@
             initCategories();
             
             // تحميل الثيم المحفوظ
-            const savedTheme = localStorage.getItem('theme') || 'light-theme';
-            changeTheme(savedTheme);
+            if (isDarkTheme) {
+                document.body.className = 'dark-theme';
+                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                themeToggleBtn.title = 'الوضع النهاري';
+            } else {
+                document.body.className = 'light-theme';
+                themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                themeToggleBtn.title = 'الوضع الليلي';
+            }
         }
 
         // بدء التطبيق
         initApp();
     </script>
 </body>
-</html>
+            </html>
