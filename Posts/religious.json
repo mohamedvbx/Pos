@@ -1,12 +1,242 @@
 [
-    {
-        "text": "إذا أحبك الله سيريك عيوب الدنيا حتى لا تركن إليها",
-        "date": "17/4/2025",
-        "shareText": "حكمة دينية: إذا أحبك الله سيريك عيوب الدنيا حتى لا تركن إليها"
-    },
-    {
-        "text": "الصلاة هي الصلة بين العبد وربه",
-        "image": "https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-        "date": "16/4/2025"
-    }
+  {
+    "text": "﴿ وَمَن يَتَّقِ اللَّـهَ يَجْعَل لَّهُ مَخْرَجًا ﴾",
+    "image": "https://images.unsplash.com/photo-1542662565-7e4b66bae529",
+    "date": "01/01/2023"
+  },
+  {
+    "text": "الصلاة نور، والصدقة برهان، والصبر ضياء",
+    "image": "https://images.pexels.com/photos/3580104/pexels-photo-3580104.jpeg",
+    "date": "02/01/2023"
+  },
+  {
+    "text": "اللهم اجعل القرآن ربيع قلوبنا ونور صدورنا",
+    "image": "https://images.unsplash.com/photo-1568219656418-15c329312bf1",
+    "date": "03/01/2023"
+  },
+  {
+    "text": "﴿ إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴾",
+    "image": "https://images.pexels.com/photos/3778361/pexels-photo-3778361.jpeg",
+    "date": "04/01/2023"
+  },
+  {
+    "text": "من داوم على الاستغفار جعل الله له من كل هم فرجاً",
+    "image": "https://images.unsplash.com/photo-1560421683-2587f1591d30",
+    "date": "05/01/2023"
+  },
+  {
+    "text": "اللهم إني أسألك علماً نافعاً ورزقاً طيباً وعملاً متقبلاً",
+    "image": "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
+    "date": "06/01/2023"
+  },
+  {
+    "text": "﴿ وَاذْكُرُوا اللَّـهَ كَثِيرًا لَّعَلَّكُمْ تُفْلِحُونَ ﴾",
+    "image": "https://images.unsplash.com/photo-1561768033-7e924f619b47",
+    "date": "07/01/2023"
+  },
+  {
+    "text": "الصبر مفتاح الفرج",
+    "image": "https://images.pexels.com/photos/3771079/pexels-photo-3771079.jpeg",
+    "date": "08/01/2023"
+  },
+  {
+    "text": "اللهم ارزقنا حج بيتك الحرام",
+    "image": "https://images.unsplash.com/photo-1542662565-7e4b66bae529",
+    "date": "09/01/2023"
+  },
+  {
+    "text": "﴿ وَمَا تَوْفِيقِي إِلَّا بِاللَّـهِ ﴾",
+    "image": "https://images.pexels.com/photos/3580104/pexels-photo-3580104.jpeg",
+    "date": "10/01/2023"
+  },
+  {
+    "text": "الدعاء مخ العبادة",
+    "image": "https://images.unsplash.com/photo-1568219656418-15c329312bf1",
+    "date": "11/01/2023"
+  },
+  {
+    "text": "اللهم اغفر لنا وارحمنا وعافنا واعف عنا",
+    "image": "https://images.pexels.com/photos/3778361/pexels-photo-3778361.jpeg",
+    "date": "12/01/2023"
+  },
+  {
+    "text": "﴿ وَتَوَكَّلْ عَلَى الْحَيِّ الَّذِي لَا يَمُوتُ ﴾",
+    "image": "https://images.unsplash.com/photo-1560421683-2587f1591d30",
+    "date": "13/01/2023"
+  },
+  {
+    "text": "الصدقة تطفئ الخطيئة كما يطفئ الماء النار",
+    "image": "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
+    "date": "14/01/2023"
+  },
+  {
+    "text": "اللهم اجعلنا من التوابين واجعلنا من المتطهرين",
+    "image": "https://images.unsplash.com/photo-1561768033-7e924f619b47",
+    "date": "15/01/2023"
+  },
+  {
+    "text": "﴿ وَمَن يَتَوَكَّلْ عَلَى اللَّـهِ فَهُوَ حَسْبُهُ ﴾",
+    "image": "https://images.pexels.com/photos/3771079/pexels-photo-3771079.jpeg",
+    "date": "16/01/2023"
+  },
+  {
+    "text": "خيركم من تعلم القرآن وعلمه",
+    "image": "https://images.unsplash.com/photo-1542662565-7e4b66bae529",
+    "date": "17/01/2023"
+  },
+  {
+    "text": "اللهم إني أعوذ بك من الهم والحزن",
+    "image": "https://images.pexels.com/photos/3580104/pexels-photo-3580104.jpeg",
+    "date": "18/01/2023"
+  },
+  {
+    "text": "﴿ وَاللَّـهُ غَالِبٌ عَلَىٰ أَمْرِهِ ﴾",
+    "image": "https://images.unsplash.com/photo-1568219656418-15c329312bf1",
+    "date": "19/01/2023"
+  },
+  {
+    "text": "الذكر طمأنينة القلوب",
+    "image": "https://images.pexels.com/photos/3778361/pexels-photo-3778361.jpeg",
+    "date": "20/01/2023"
+  },
+  {
+    "text": "اللهم ارزقنا حسن الخاتمة",
+    "image": "https://images.unsplash.com/photo-1560421683-2587f1591d30",
+    "date": "21/01/2023"
+  },
+  {
+    "text": "﴿ وَاللَّـهُ خَيْرُ الْحَافِظِينَ ﴾",
+    "image": "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
+    "date": "22/01/2023"
+  },
+  {
+    "text": "بر الوالدين من أعظم الأعمال",
+    "image": "https://images.unsplash.com/photo-1561768033-7e924f619b47",
+    "date": "23/01/2023"
+  },
+  {
+    "text": "اللهم اهدنا فيمن هديت",
+    "image": "https://images.pexels.com/photos/3771079/pexels-photo-3771079.jpeg",
+    "date": "24/01/2023"
+  },
+  {
+    "text": "﴿ إِنَّ اللَّـهَ مَعَ الصَّابِرِينَ ﴾",
+    "image": "https://images.unsplash.com/photo-1542662565-7e4b66bae529",
+    "date": "25/01/2023"
+  },
+  {
+    "text": "صوموا تصحوا",
+    "image": "https://images.pexels.com/photos/3580104/pexels-photo-3580104.jpeg",
+    "date": "26/01/2023"
+  },
+  {
+    "text": "اللهم اغسلنا من الذنوب والخطايا كما ينقى الثوب الأبيض من الدنس",
+    "image": "https://images.unsplash.com/photo-1568219656418-15c329312bf1",
+    "date": "27/01/2023"
+  },
+  {
+    "text": "﴿ وَاللَّـهُ يُحِبُّ الْمُحْسِنِينَ ﴾",
+    "image": "https://images.pexels.com/photos/3778361/pexels-photo-3778361.jpeg",
+    "date": "28/01/2023"
+  },
+  {
+    "text": "الحياء شعبة من الإيمان",
+    "image": "https://images.unsplash.com/photo-1560421683-2587f1591d30",
+    "date": "29/01/2023"
+  },
+  {
+    "text": "اللهم ارزقنا الإخلاص في القول والعمل",
+    "image": "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
+    "date": "30/01/2023"
+  },
+  {
+    "text": "﴿ وَمَا رَمَيْتَ إِذْ رَمَيْتَ وَلَـٰكِنَّ اللَّـهَ رَمَىٰ ﴾",
+    "image": "https://images.unsplash.com/photo-1561768033-7e924f619b47",
+    "date": "31/01/2023"
+  },
+  {
+    "text": "الابتسامة في وجه أخيك صدقة",
+    "image": "https://images.pexels.com/photos/3771079/pexels-photo-3771079.jpeg",
+    "date": "01/02/2023"
+  },
+  {
+    "text": "اللهم اجعلنا من عبادك الشاكرين",
+    "image": "https://images.unsplash.com/photo-1542662565-7e4b66bae529",
+    "date": "02/02/2023"
+  },
+  {
+    "text": "﴿ وَالْعَصْرِ * إِنَّ الْإِنسَانَ لَفِي خُسْرٍ ﴾",
+    "image": "https://images.pexels.com/photos/3580104/pexels-photo-3580104.jpeg",
+    "date": "03/02/2023"
+  },
+  {
+    "text": "خير الناس أنفعهم للناس",
+    "image": "https://images.unsplash.com/photo-1568219656418-15c329312bf1",
+    "date": "04/02/2023"
+  },
+  {
+    "text": "اللهم بارك لنا في أوقاتنا وأعمارنا",
+    "image": "https://images.pexels.com/photos/3778361/pexels-photo-3778361.jpeg",
+    "date": "05/02/2023"
+  },
+  {
+    "text": "﴿ وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ ﴾",
+    "image": "https://images.unsplash.com/photo-1560421683-2587f1591d30",
+    "date": "06/02/2023"
+  },
+  {
+    "text": "الكلمة الطيبة صدقة",
+    "image": "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
+    "date": "07/02/2023"
+  },
+  {
+    "text": "اللهم ارزقنا القناعة والرضا",
+    "image": "https://images.unsplash.com/photo-1561768033-7e924f619b47",
+    "date": "08/02/2023"
+  },
+  {
+    "text": "﴿ وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ﴾",
+    "image": "https://images.pexels.com/photos/3771079/pexels-photo-3771079.jpeg",
+    "date": "09/02/2023"
+  },
+  {
+    "text": "المسلم من سلم الناس من لسانه ويده",
+    "image": "https://images.unsplash.com/photo-1542662565-7e4b66bae529",
+    "date": "10/02/2023"
+  },
+  {
+    "text": "اللهم اجعلنا من أهل القرآن",
+    "image": "https://images.pexels.com/photos/3580104/pexels-photo-3580104.jpeg",
+    "date": "11/02/2023"
+  },
+  {
+    "text": "﴿ وَمَا تَفْعَلُوا مِنْ خَيْرٍ يَعْلَمْهُ اللَّـهُ ﴾",
+    "image": "https://images.unsplash.com/photo-1568219656418-15c329312bf1",
+    "date": "12/02/2023"
+  },
+  {
+    "text": "التفاؤل من الإيمان",
+    "image": "https://images.pexels.com/photos/3778361/pexels-photo-3778361.jpeg",
+    "date": "13/02/2023"
+  },
+  {
+    "text": "اللهم اجعلنا من المتوكلين عليك",
+    "image": "https://images.unsplash.com/photo-1560421683-2587f1591d30",
+    "date": "14/02/2023"
+  },
+  {
+    "text": "﴿ وَاللَّـهُ أَعْلَمُ بِأَعْدَائِكُمْ ﴾",
+    "image": "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
+    "date": "15/02/2023"
+  },
+  {
+    "text": "الرفق ما كان في شيء إلا زانه",
+    "image": "https://images.unsplash.com/photo-1561768033-7e924f619b47",
+    "date": "16/02/2023"
+  },
+  {
+    "text": "اللهم إني أسألك الفردوس الأعلى",
+    "image": "https://images.pexels.com/photos/3771079/pexels-photo-3771079.jpeg",
+    "date": "17/02/2023"
+  }
 ]
