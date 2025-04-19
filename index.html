@@ -205,6 +205,12 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
+        /* إضافة كلاس للصورة المؤقتة */
+        .post-image.loading {
+            background-color: #f0f0f0;
+            opacity: 0.5;
+        }
+
         .post-content {
             padding: 15px;
         }
@@ -501,7 +507,17 @@
                 
                 let imageHTML = '';
                 if (post.image && post.image.trim() !== '') {
-                    imageHTML = `<img src="${post.image}" alt="صورة البوست" class="post-image">`;
+                    // التعديل هنا: إضافة lazy loading و placeholder
+                    imageHTML = `
+                        <img 
+                            src="placeholder.jpg" 
+                            data-src="${post.image}" 
+                            class="post-image loading" 
+                            alt="صورة البوست" 
+                            loading="lazy"
+                            onload="this.classList.remove('loading')"
+                        >
+                    `;
                 }
                 
                 postCard.innerHTML = `
@@ -545,8 +561,29 @@
                     optionsDialog.classList.toggle('show', !isShowing);
                 });
                 
+                // تحميل الصور عند ظهورها في الشاشة (Intersection Observer)
+                const img = postCard.querySelector('img');
+                if (img) {
+                    loadImageWhenVisible(img);
+                }
+                
                 postsGrid.appendChild(postCard);
             });
+        }
+
+        // دالة لتحميل الصور عند ظهورها في الشاشة
+        function loadImageWhenVisible(img) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lazyImage = entry.target;
+                        lazyImage.src = lazyImage.dataset.src;
+                        observer.unobserve(lazyImage);
+                    }
+                });
+            });
+            
+            observer.observe(img);
         }
 
         // تحديث حالة زر المفضلة
@@ -589,7 +626,17 @@
                         
                         let imageHTML = '';
                         if (post.image && post.image.trim() !== '') {
-                            imageHTML = `<img src="${post.image}" alt="صورة البوست" class="post-image">`;
+                            // التعديل هنا: إضافة lazy loading و placeholder
+                            imageHTML = `
+                                <img 
+                                    src="placeholder.jpg" 
+                                    data-src="${post.image}" 
+                                    class="post-image loading" 
+                                    alt="صورة البوست" 
+                                    loading="lazy"
+                                    onload="this.classList.remove('loading')"
+                                >
+                            `;
                         }
                         
                         postCard.innerHTML = `
@@ -628,6 +675,12 @@
                             
                             optionsDialog.classList.toggle('show', !isShowing);
                         });
+                        
+                        // تحميل الصور عند ظهورها في الشاشة (Intersection Observer)
+                        const img = postCard.querySelector('img');
+                        if (img) {
+                            loadImageWhenVisible(img);
+                        }
                         
                         favoritesGrid.appendChild(postCard);
                     });
